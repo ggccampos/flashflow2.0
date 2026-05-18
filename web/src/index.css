@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+:root {
+  font-family: Inter, sans-serif;
+
+  color: white;
+  background: #020617;
+}
+
+body {
+  min-height: 100vh;
+  background: #020617;
+}
+
+select{
+  appearance: none;
+  background-image: url("./assets/chevron-down.svg");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem top 50%;
+}

@@ -1,0 +1,158 @@
+# Flashflow API - Exemplos de Requisições
+
+## Base URL
+http://localhost:3000
+
+## Health Check
+### Verificar status do servidor
+GET http://localhost:3000/health
+
+---
+
+## Flashcards
+
+### 1. Criar Flashcard
+POST http://localhost:3000/api/flashcards
+Content-Type: application/json
+
+{
+  "question": "O que é JavaScript?",
+  "answer": "JavaScript é uma linguagem de programação de alto nível, interpretada e orientada a objetos, comumente usada para desenvolvimento web.",
+  "category": "JavaScript"
+}
+
+### 2. Criar outro Flashcard
+POST http://localhost:3000/api/flashcards
+Content-Type: application/json
+
+{
+  "question": "O que é React?",
+  "answer": "React é uma biblioteca JavaScript para construir interfaces de usuário com componentes reutilizáveis.",
+  "category": "React"
+}
+
+### 3. Criar mais um Flashcard
+POST http://localhost:3000/api/flashcards
+Content-Type: application/json
+
+{
+  "question": "O que é Tailwind CSS?",
+  "answer": "Tailwind CSS é um framework CSS utilitário que oferece classes pré-definidas para estilizar elementos HTML.",
+  "category": "Tailwind CSS"
+}
+
+---
+
+## Listar Flashcards
+
+### 4. Listar todos os flashcards
+GET http://localhost:3000/api/flashcards
+
+### 5. Listar flashcards da categoria JavaScript
+GET http://localhost:3000/api/flashcards?category=JavaScript
+
+### 6. Listar flashcards da categoria React
+GET http://localhost:3000/api/flashcards?category=React
+
+---
+
+## Obter Flashcard Específico
+
+### 7. Obter um flashcard pelo ID (substitua o ID)
+GET http://localhost:3000/api/flashcards/{id}
+
+Exemplo com ID:
+GET http://localhost:3000/api/flashcards/550e8400-e29b-41d4-a716-446655440000
+
+---
+
+## Atualizar Flashcard
+
+### 8. Atualizar um flashcard (substitua o ID)
+PUT http://localhost:3000/api/flashcards/{id}
+Content-Type: application/json
+
+{
+  "question": "O que é JavaScript (atualizado)?",
+  "answer": "JavaScript é uma linguagem versátil usada para desenvolvimento web, com capacidades assíncronas e orientadas a objetos."
+}
+
+### 9. Atualizar apenas a categoria
+PUT http://localhost:3000/api/flashcards/{id}
+Content-Type: application/json
+
+{
+  "category": "React"
+}
+
+---
+
+## Deletar Flashcard
+
+### 10. Deletar um flashcard (substitua o ID)
+DELETE http://localhost:3000/api/flashcards/{id}
+
+---
+
+## Testando Validações
+
+### Erro: Sem pergunta
+POST http://localhost:3000/api/flashcards
+Content-Type: application/json
+
+{
+  "answer": "Resposta sem pergunta",
+  "category": "JavaScript"
+}
+
+### Erro: Sem resposta
+POST http://localhost:3000/api/flashcards
+Content-Type: application/json
+
+{
+  "question": "Pergunta sem resposta",
+  "category": "JavaScript"
+}
+
+### Erro: Sem categoria
+POST http://localhost:3000/api/flashcards
+Content-Type: application/json
+
+{
+  "question": "Pergunta",
+  "answer": "Resposta"
+}
+
+### Erro: Categoria inválida
+POST http://localhost:3000/api/flashcards
+Content-Type: application/json
+
+{
+  "question": "Qual é o nome do seu framework favorito?",
+  "answer": "Vue.js",
+  "category": "Vue.js"
+}
+
+### Erro: Flashcard não encontrado
+GET http://localhost:3000/api/flashcards/id-inexistente
+
+### Erro: Deletar flashcard não existente
+DELETE http://localhost:3000/api/flashcards/id-inexistente
+
+---
+
+## Categorias Válidas
+- JavaScript
+- React
+- Tailwind CSS
+
+---
+
+## Códigos de Resposta Esperados
+
+- **201 Created**: Flashcard criado com sucesso
+- **200 OK**: Requisição bem-sucedida (GET, PUT)
+- **204 No Content**: Flashcard deletado com sucesso
+- **400 Bad Request**: Dados inválidos
+- **404 Not Found**: Recurso não encontrado
+- **500 Internal Server Error**: Erro no servidor
